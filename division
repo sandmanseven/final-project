@@ -1,0 +1,145 @@
+//**********Division**************//
+    //******Const/Const***********//
+    //*****Const/Operator *******//
+    //*****Operator/Const*********//
+    //*****Variable/Const*********//
+    //*****Const/Variable*********//
+    //*******Variable/Operator****//
+    //*******Operator/Variable****//
+    //*******Variable/Variable****//
+    //*******Operator/Operator****//
+    class Division :public Operator{
+    public:
+        //******Const/Const***********//
+        Division(Const left,Const right)
+        {
+            ostringstream s1,s2;
+            string sl,sr;
+            root = new Node('/');
+            root->leftchild =new Node(left.getValue());
+            root->rightchild =new Node(right.getValue());
+            s1<<left.getValue();
+            sl=s1.str();
+            s2<<right.getValue();
+            sr=s2.str();
+            if (root->rightchild==0) {
+                throw "DivByZero";
+            }
+            val=BinCompute(sl, sr, '/');
+        }
+        //*****Const/Operator *******//
+        Division(Const left,Operator right)
+        {
+            Node *temp=new Node('/');
+            temp->leftchild = new Node(left.getValue());
+            temp->rightchild = right.root;
+            ostringstream s1;
+            string sl;
+            s1 << left.getValue();
+            sl = s1.str();
+            if (root->rightchild==0) {
+                throw "DivByZero";
+            }
+            val = BinCompute(sl, right.val, '/');
+            root = temp;
+            
+        }
+        //*****Operator/Const*********//
+        Division(Operator left, Const right)
+        {
+            Node *temp = new Node('/');
+            temp->leftchild = left.root;
+            temp->rightchild = new Node(right.getValue());
+            ostringstream s1;
+            string sr;
+            s1 << right.getValue();
+            sr = s1.str();
+            if (root->rightchild==0) {
+                throw "DivByZero";
+            }
+            val = BinCompute(left.val, sr, '/');
+            root = temp;
+        }
+        //*****Variable/Const*********//
+        Division(Var left, Const right)
+        {
+            root = new Node('/');
+            root->leftchild = new Node(left.getValue());
+            root->rightchild = new Node(right.getValue());
+            ostringstream s1;
+            string sr;
+            s1 << right.getValue();
+            sr = s1.str();
+            if (root->rightchild==0) {
+                throw "DivByZero";
+            }
+            val = BinCompute(left.getValue(), sr, '/');
+        }
+        //*****Const/Variable*********//
+        Division(Const left, Var right)
+        {
+            root = new Node('/');
+            root->leftchild = new Node(left.getValue());
+            root->rightchild = new Node(right.getValue());
+            ostringstream s1;
+            string sl;
+            s1 << left.getValue();
+            sl = s1.str();
+            if (root->rightchild==0) {
+                throw "DivByZero";
+            }
+            val = BinCompute(sl, right.getValue(), '/');
+        }
+        
+        //*******Variable/Operator****//
+        Division(Var left, Operator right)
+        {
+            Node *temp = new Node('/');
+            temp->leftchild = new Node(left.getValue());
+            temp->rightchild = right.root;
+            if (root->rightchild==0) {
+                throw "DivByZero";
+            }
+            val = BinCompute(left.getValue(), right.val, '/');
+            root = temp;
+        }
+        
+        //*******Operator/Variable****//
+        Division(Operator left, Var right)
+        {
+            Node *temp = new Node('/');
+            temp->leftchild = left.root;
+            temp->rightchild = new Node(right.getValue());
+            if (root->rightchild==0) {
+                throw "DivByZero";
+            }
+            val = BinCompute(left.val, right.getValue(), '/');
+            root = temp;
+        }
+        
+        //*******Variable/Variable****//
+        Division(Var left, Var right)
+        {
+            Node *temp = new Node('/');
+            temp->leftchild = new Node(left.getValue());
+            temp->rightchild = new Node(right.getValue());
+            if (root->rightchild==0) {
+                throw "DivByZero";
+            }
+            val = BinCompute(left.getValue(), right.getValue(), '/');
+            root = temp;
+        }
+        
+        //*******Operator/Operator****//
+        Division(Operator left, Operator right)
+        {
+            Node *temp = new Node('/');
+            temp->leftchild = left.root;
+            temp->rightchild = right.root;
+            if (root->rightchild==0) {
+                throw "DivByZero";
+            }
+            val = BinCompute(left.val, right.val, '/');
+            root = temp;
+        }
+
