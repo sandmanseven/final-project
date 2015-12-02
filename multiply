@@ -1,0 +1,119 @@
+//**********Multiply**************//
+//******Const*Const***********//
+//*****Const*Operator *******//
+//*****Operator*Const*********//
+//*****Variable*Const*********//
+//*****Const*Variable*********//
+//*******Variable*Operator****//
+//*******Operator*Variable****//
+//*******Variable*Variable****//
+//*******Operator*Operator****//
+class Multiply :public Operator{
+public:
+    //******Const*Const***********//
+   Multiply(Const left,Const right)
+    {
+        ostringstream s1,s2;
+        string sl,sr;
+        root = new Node('*');
+        root->leftchild =new Node(left.getValue());
+        root->rightchild =new Node(right.getValue());
+        s1<<left.getValue();
+        sl=s1.str();
+        s2<<right.getValue();
+        sr=s2.str();
+        val=BinCompute(sl, sr, '*');
+        }
+    //*****Const*Operator *******//
+    Multiply(Const left,Operator right)
+    {
+        Node *temp=new Node('*');
+        temp->leftchild = new Node(left.getValue());
+        temp->rightchild = right.root;
+        ostringstream s1;
+        string sl;
+        s1 << left.getValue();
+        sl = s1.str();
+        val = BinCompute(sl, right.val, '*');
+        root = temp;
+
+    }
+    //*****Operator*Const*********//
+    Multiply(Operator left, Const right)
+    {
+        Node *temp = new Node('*');
+        temp->leftchild = left.root;
+        temp->rightchild = new Node(right.getValue());
+        ostringstream s1;
+        string sr;
+        s1 << right.getValue();
+        sr = s1.str();
+        val = BinCompute(left.val, sr, '*');
+        root = temp;
+    }
+    //*****Variable*Const*********//
+    Multiply(Var left, Const right)
+    {
+        root = new Node('*');
+        root->leftchild = new Node(left.getValue());
+        root->rightchild = new Node(right.getValue());
+        ostringstream s1;
+        string sr;
+        s1 << right.getValue();
+        sr = s1.str();
+        val = BinCompute(left.getValue(), sr, '*');
+    }
+   //*****Const*Variable*********//
+    Multiply(Const left, Var right)
+    {
+        root = new Node('*');
+        root->leftchild = new Node(left.getValue());
+        root->rightchild = new Node(right.getValue());
+        ostringstream s1;
+        string sl;
+        s1 << left.getValue();
+        sl = s1.str();
+        val = BinCompute(sl, right.getValue(), '*');
+    }
+    
+    //*******Variable*Operator****//
+    Multiply(Var left, Operator right)
+    {
+        Node *temp = new Node('*');
+        temp->leftchild = new Node(left.getValue());
+        temp->rightchild = right.root;
+        val = BinCompute(left.getValue(), right.val, '*');
+        root = temp;
+    }
+    
+    //*******Operator*Variable****//
+    Multiply(Operator left, Var right)
+    {
+        Node *temp = new Node('*');
+        temp->leftchild = left.root;
+        temp->rightchild = new Node(right.getValue());
+        val = BinCompute(left.val, right.getValue(), '*');
+        root = temp;
+    }
+    
+    //*******Variable*Variable****//
+    Multiply(Var left, Var right)
+    {
+        Node *temp = new Node('*');
+        temp->leftchild = new Node(left.getValue());
+        temp->rightchild = new Node(right.getValue());
+        val = BinCompute(left.getValue(), right.getValue(), '*');
+        root = temp;
+    }
+    
+    //*******Operator*Operator****//
+    Multiply(Operator left, Operator right)
+    {
+        Node *temp = new Node('*');
+        temp->leftchild = left.root;
+        temp->rightchild = right.root;
+        val = BinCompute(left.val, right.val, '*');
+        root = temp;
+    }
+
+};
