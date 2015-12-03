@@ -117,3 +117,29 @@ public:
     }
 
 };
+int main()
+    {
+        
+        Operator a=Multiply(Const(5),Const(3));
+        Operator a1 = Multiply(Const(5), a);
+        Operator a2 = Multiply(Var("x"), Const(5));
+        Operator a3 = Multiply(Const(5),Var("x"));
+        Var v("x");
+        v.set("x", 5);
+        Operator a4 = Multiply(Const(5), v);
+        Operator a5 = Multiply(v, a4);
+        Operator a6 = Multiply(a4, v);
+        Operator a7 = Multiply(v, v);
+        Operator a8 = Multiply(a5, a6);
+        
+        cout << a << endl;
+        cout << a1 << endl;
+        cout << a2 << endl;
+        cout << a3 << endl;
+        cout << a4 << endl;
+        cout << a5 << endl;
+        cout << a6 << endl;
+        cout << a7 << endl;
+        cout << a8 << endl;
+        return 0;
+    }
